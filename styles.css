@@ -1,121 +1,192 @@
-/* General Body Styles */
+/* General Body Styles - Sakura Dream Theme */
+:root {
+    --bg-start: #fdf2f8; /* Soft Pink */
+    --bg-end: #fefce8;   /* Soft Yellow */
+    --card-bg: #ffffff;
+    --border-color: #f3f4f6;
+    --primary-text: #1f2937;
+    --secondary-text: #6b7280;
+    --accent-color: #ec4899; /* Pink-500 */
+    --accent-glow: rgba(236, 72, 153, 0.15);
+    --button-bg-start: #ec4899; /* Pink-500 */
+    --button-bg-end: #d946ef;   /* Fuchsia-500 */
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    /* A soft, colorful gradient background */
-    background: linear-gradient(135deg, #f5e6ff 0%, #e6f7ff 100%);
-    color: #333; /* Darker text for readability on light background */
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    color: var(--primary-text);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Hide scrollbars */
-}
-
-/* Main App Container */
-#app-container {
-    width: 100%;
-    max-width: 1200px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Header Styles */
-header {
-    text-align: center;
-    padding: 10px 0;
+/* Main Storybook Container Card */
+.storybook-container {
     width: 100%;
-    flex-shrink: 0; /* Prevent header from shrinking */
+    max-width: 1000px;
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s 0.2s ease-out forwards;
 }
 
-header h1 {
-    font-size: 2.5rem;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header Styles */
+.storybook-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.storybook-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
     margin: 0;
-    color: #2c3e50; /* A deep, rich blue for the title */
+    color: #be185d; /* Deeper Pink */
     font-weight: 700;
 }
 
-header p {
+.storybook-header p {
     font-size: 1.1rem;
-    color: #555;
-    margin-top: 5px;
+    color: var(--secondary-text);
+    margin-top: 8px;
 }
 
-/* Storybook Viewer */
-#storybook-viewer {
+/* Storybook Viewer Main Content */
+.storybook-main {
     width: 100%;
-    flex-grow: 1; /* Allow viewer to take up remaining space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
 
-#image-container {
+.image-container {
     width: 100%;
-    height: calc(100% - 80px); /* Adjust height to leave space for nav */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    min-height: 50vh;
 }
 
-#storybook-image {
+.storybook-image {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 60vh;
     object-fit: contain;
-    border-radius: 8px;
-    /* A softer shadow on a white background for the image to pop */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.storybook-image.visible {
+    opacity: 1;
+}
+
+/* Loading Spinner */
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--border-color);
+    border-bottom-color: var(--accent-color);
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    position: absolute;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Navigation Controls */
-#navigation {
+.navigation-controls {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
-    flex-shrink: 0; /* Prevent nav from shrinking */
 }
 
-#prev-button, #next-button {
-    background-color: #8e44ad; /* A vibrant purple */
-    color: #fff;
+.nav-button {
+    background: linear-gradient(135deg, var(--button-bg-start), var(--button-bg-end));
+    color: #ffffff;
     border: none;
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 50px; /* Rounded buttons for a softer look */
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 10px rgba(142, 68, 173, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 15px var(--accent-glow);
 }
 
-#prev-button:hover, #next-button:hover {
-    background-color: #9b59b6; /* A slightly lighter purple on hover */
-    transform: translateY(-3px) scale(1.05); /* Add a subtle lift and scale effect */
+.nav-button:hover:not(:disabled) {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(236, 72, 153, 0.3);
 }
 
-#page-indicator {
+.page-indicator {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #444;
-    user-select: none; /* Prevent text selection */
+    color: var(--secondary-text);
+    user-select: none;
 }
 
-/* Disabled state for buttons */
-.disabled {
+.nav-button.disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background-color: #c8b6d1; /* Muted purple for disabled state */
-    box-shadow: none;
     transform: none;
+    background: #e5e7eb; /* Gray-200 */
+    box-shadow: none;
+    color: var(--secondary-text);
+}
+
+/* Footer */
+.storybook-footer {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .storybook-container { padding: 20px; }
+    .storybook-header h1 { font-size: 2rem; }
+    .navigation-controls { flex-direction: column; gap: 15px; }
+    .page-indicator { order: -1; }
+    .nav-button span { display: none; } /* Show only icons on small screens */
+    .nav-button { padding: 12px; }
 }
 
