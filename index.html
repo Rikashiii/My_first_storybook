@@ -7,7 +7,7 @@
     <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Link to the CSS file in your GitHub repository -->
     <link rel="stylesheet" href="https://raw.githubusercontent.com/Rikashiii/My_first_storybook/main/styles.css">
 </head>
@@ -17,7 +17,7 @@
 
         <header class="storybook-header">
             <h1>Rikashi's First Apartment</h1>
-            <p>A story by Rikashiii</p>
+            <p>A beautifully illustrated story by Rikashiii</p>
         </header>
 
         <!-- Storybook Viewer -->
@@ -25,16 +25,27 @@
             
             <!-- Image Display -->
             <div class="image-container">
+                 <div id="loader" class="loader"></div>
                  <img id="storybook-image" class="storybook-image" src="" alt="Storybook Page">
             </div>
 
             <!-- Navigation Controls -->
             <div id="navigation" class="navigation-controls">
-                <button id="prev-button" class="nav-button">Previous</button>
+                <button id="prev-button" class="nav-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <span>Previous</span>
+                </button>
                 <div id="page-indicator" class="page-indicator">Page 1 / 1</div>
-                <button id="next-button" class="nav-button">Next</button>
+                <button id="next-button" class="nav-button">
+                    <span>Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
         </main>
+        
+        <footer class="storybook-footer">
+            <p>&copy; 2024 Rikashiii. All Rights Reserved.</p>
+        </footer>
     </div>
 
     <script>
@@ -43,8 +54,8 @@
             const prevButton = document.getElementById('prev-button');
             const nextButton = document.getElementById('next-button');
             const pageIndicator = document.getElementById('page-indicator');
+            const loader = document.getElementById('loader');
 
-            // NOTE: The ".disabled" class used here is defined in the external styles.css file
             const pages = [
                 "https://github.com/user-attachments/assets/fc2d4335-9190-46be-9c3e-2572b3ed2dde", // Cover
                 "https://github.com/user-attachments/assets/e99fa015-fa1a-44a3-ba49-2105b231f6ed",
@@ -65,13 +76,21 @@
                 if (index < 0 || index >= pages.length) return;
                 
                 imageElement.classList.remove('visible');
+                loader.style.display = 'block';
 
-                setTimeout(() => {
-                    imageElement.src = pages[index];
-                    currentPageIndex = index;
-                    updateNavigation();
-                    imageElement.classList.add('visible');
-                }, 200); // Match timeout with CSS transition
+                // Preload the image before showing it
+                const tempImage = new Image();
+                tempImage.src = pages[index];
+                
+                tempImage.onload = () => {
+                    setTimeout(() => {
+                        imageElement.src = tempImage.src;
+                        currentPageIndex = index;
+                        updateNavigation();
+                        loader.style.display = 'none';
+                        imageElement.classList.add('visible');
+                    }, 300); // A short delay for a smoother feel
+                };
             };
 
             const updateNavigation = () => {
@@ -102,3 +121,4 @@
     </script>
 </body>
 </html>
+
