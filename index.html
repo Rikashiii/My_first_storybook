@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rikashi's first apartment</title>
+    <title>Rikashi's First Apartment</title>
+    <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Link to the CSS file in your GitHub repository -->
     <link rel="stylesheet" href="https://raw.githubusercontent.com/Rikashiii/My_first_storybook/main/styles.css">
 </head>
 <body>
 
-    <div id="app-container">
+    <div class="storybook-container">
 
-        <header>
-            <h1>Rikashi's first apartment</h1>
+        <header class="storybook-header">
+            <h1>Rikashi's First Apartment</h1>
             <p>A story by Rikashiii</p>
         </header>
 
         <!-- Storybook Viewer -->
-        <main id="storybook-viewer">
+        <main id="storybook-viewer" class="storybook-main">
             
             <!-- Image Display -->
-            <div id="image-container">
-                 <img id="storybook-image" src="" alt="Storybook Page">
+            <div class="image-container">
+                 <img id="storybook-image" class="storybook-image" src="" alt="Storybook Page">
             </div>
 
             <!-- Navigation Controls -->
-            <div id="navigation">
-                <button id="prev-button">Previous</button>
-                <div id="page-indicator">Page 1 / 1</div>
-                <button id="next-button">Next</button>
+            <div id="navigation" class="navigation-controls">
+                <button id="prev-button" class="nav-button">Previous</button>
+                <div id="page-indicator" class="page-indicator">Page 1 / 1</div>
+                <button id="next-button" class="nav-button">Next</button>
             </div>
         </main>
     </div>
@@ -63,25 +64,22 @@
             const displayPage = (index) => {
                 if (index < 0 || index >= pages.length) return;
                 
-                // Prefetch next image for smoother transitions
-                if(index + 1 < pages.length){
-                    const nextImage = new Image();
-                    nextImage.src = pages[index + 1];
-                }
+                imageElement.classList.remove('visible');
 
-                imageElement.src = pages[index];
-                currentPageIndex = index;
-                updateNavigation();
+                setTimeout(() => {
+                    imageElement.src = pages[index];
+                    currentPageIndex = index;
+                    updateNavigation();
+                    imageElement.classList.add('visible');
+                }, 200); // Match timeout with CSS transition
             };
 
             const updateNavigation = () => {
                 pageIndicator.textContent = `Page ${currentPageIndex + 1} / ${pages.length}`;
                 
-                // Handle previous button state
                 prevButton.disabled = currentPageIndex === 0;
                 prevButton.classList.toggle('disabled', currentPageIndex === 0);
                 
-                // Handle next button state
                 nextButton.disabled = currentPageIndex === pages.length - 1;
                 nextButton.classList.toggle('disabled', currentPageIndex === pages.length - 1);
             };
