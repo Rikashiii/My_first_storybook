@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rikashi's first apartment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the CSS file in your GitHub repository -->
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/Rikashiii/My_first_storybook/main/styles.css">
+</head>
+<body>
+
+    <div id="app-container">
+
+        <header>
+            <h1>Rikashi's first apartment</h1>
+            <p>A story by Rikashiii</p>
+        </header>
+
+        <!-- Storybook Viewer -->
+        <main id="storybook-viewer">
+            
+            <!-- Image Display -->
+            <div id="image-container">
+                 <img id="storybook-image" src="" alt="Storybook Page">
+            </div>
+
+            <!-- Navigation Controls -->
+            <div id="navigation">
+                <button id="prev-button">Previous</button>
+                <div id="page-indicator">Page 1 / 1</div>
+                <button id="next-button">Next</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageElement = document.getElementById('storybook-image');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const pageIndicator = document.getElementById('page-indicator');
+
+            // NOTE: The ".disabled" class used here is defined in the external styles.css file
+            const pages = [
+                "https://github.com/user-attachments/assets/fc2d4335-9190-46be-9c3e-2572b3ed2dde", // Cover
+                "https://github.com/user-attachments/assets/e99fa015-fa1a-44a3-ba49-2105b231f6ed",
+                "https://github.com/user-attachments/assets/378e48b3-39c2-4d41-9d45-b2e8a264d067",
+                "https://github.com/user-attachments/assets/b3f76786-4960-47d3-95a3-c64ff8cb8d67",
+                "https://github.com/user-attachments/assets/3023d616-a08e-4876-bed7-e5ca00242246",
+                "https://github.com/user-attachments/assets/d9acf376-f462-40fc-9d83-134d102a3d6c",
+                "https://github.com/user-attachments/assets/74f6b94d-5305-4c5f-9de3-a0fa7b44d327",
+                "https://github.com/user-attachments/assets/0adde56d-6411-4f24-8e5b-cf7b0ae490ff",
+                "https://github.com/user-attachments/assets/4b3dc8c9-e3cb-4f0b-a454-57988740f695",
+                "https://github.com/user-attachments/assets/aad584b0-01ca-45ae-bff3-5e047df41858",
+                "https://github.com/user-attachments/assets/524979d3-2616-4e2b-8466-56016953315a"
+            ];
+
+            let currentPageIndex = 0;
+            
+            const displayPage = (index) => {
+                if (index < 0 || index >= pages.length) return;
+                
+                // Prefetch next image for smoother transitions
+                if(index + 1 < pages.length){
+                    const nextImage = new Image();
+                    nextImage.src = pages[index + 1];
+                }
+
+                imageElement.src = pages[index];
+                currentPageIndex = index;
+                updateNavigation();
+            };
+
+            const updateNavigation = () => {
+                pageIndicator.textContent = `Page ${currentPageIndex + 1} / ${pages.length}`;
+                
+                // Handle previous button state
+                prevButton.disabled = currentPageIndex === 0;
+                prevButton.classList.toggle('disabled', currentPageIndex === 0);
+                
+                // Handle next button state
+                nextButton.disabled = currentPageIndex === pages.length - 1;
+                nextButton.classList.toggle('disabled', currentPageIndex === pages.length - 1);
+            };
+
+            prevButton.addEventListener('click', () => {
+                if (currentPageIndex > 0) {
+                    displayPage(currentPageIndex - 1);
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentPageIndex < pages.length - 1) {
+                    displayPage(currentPageIndex + 1);
+                }
+            });
+
+            // Initial load
+            displayPage(currentPageIndex);
+        });
+    </script>
+</body>
+</html>
