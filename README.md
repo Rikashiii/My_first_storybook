@@ -1,7 +1,7 @@
 # My First Storybook
 
 # How to View
-Click the link in START file.
+Click the link in the description to visit the site.
 
 # Created using GEMINI Pro
 
