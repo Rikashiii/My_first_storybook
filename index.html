@@ -107,6 +107,10 @@
         /* Storybook Viewer Main Content */
         .storybook-main {
             width: 100%;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .image-container {
@@ -116,7 +120,7 @@
             align-items: center;
             margin-bottom: 20px;
             position: relative;
-            min-height: 55vh;
+            flex-grow: 1;
         }
 
         .storybook-image {
@@ -131,6 +135,51 @@
 
         .storybook-image.visible {
             opacity: 1;
+        }
+
+        /* New 'Thank You' Slide Styles */
+        .thank-you-slide {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+            padding: 20px 0;
+        }
+
+        .thank-you-slide h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        .thank-you-slide p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            margin: 10px 0 30px 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--secondary-text);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-text);
+            transform: scale(1.1);
+        }
+
+        .social-links svg {
+            width: 32px;
+            height: 32px;
         }
 
         /* Loading Spinner */
@@ -154,11 +203,13 @@
         /* Navigation Controls */
         .navigation-controls {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .nav-button {
@@ -181,12 +232,18 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(247, 183, 51, 0.3);
         }
+        
+        #completeButton, #startOverButton {
+            background: linear-gradient(135deg, #1D976C, #93F9B9);
+        }
 
         .page-indicator {
             font-size: 1.2rem;
             font-weight: 500;
             color: var(--secondary-text);
             user-select: none;
+            flex-grow: 1;
+            text-align: center;
         }
 
         .nav-button.disabled {
@@ -213,7 +270,11 @@
             .storybook-container { padding: 20px; }
             .storybook-header h1 { font-size: 2rem; }
             .storybook-image { max-height: 45vh; }
-            .image-container { min-height: 50vh; }
+            .thank-you-slide h2 { font-size: 1.8rem; }
+            
+            .navigation-controls {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -229,9 +290,25 @@
         </header>
 
         <section class="storybook-main">
-            <div class="image-container">
+            <div id="imageContainer" class="image-container">
                 <div id="loader" class="loader"></div>
                 <img id="storybookImage" class="storybook-image" src="" alt="Storybook page">
+            </div>
+
+            <div id="thankYouSlide" class="thank-you-slide">
+                <h2>Arigato! for visiting</h2>
+                <p>More coming soon</p>
+                <div id="socialLinks" class="social-links">
+                    <a href="https://github.com/Rikashiii" target="_blank" title="GitHub">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/harshchandrakar" target="_blank" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    </a>
+                    <a href="https://instagram.com/theharshchandrakar" target="_blank" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"></path></svg>
+                    </a>
+                </div>
             </div>
             
             <div class="navigation-controls">
@@ -244,6 +321,8 @@
                     <span>Next</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
+                <button id="completeButton" class="nav-button" style="display: none;">Complete</button>
+                <button id="startOverButton" class="nav-button" style="display: none;">Start Over</button>
             </div>
         </section>
 
@@ -277,6 +356,10 @@
             const prevButton = document.getElementById('prevButton');
             const nextButton = document.getElementById('nextButton');
             const pageIndicator = document.getElementById('pageIndicator');
+            const completeButton = document.getElementById('completeButton');
+            const startOverButton = document.getElementById('startOverButton');
+            const thankYouSlide = document.getElementById('thankYouSlide');
+            const imageContainer = document.getElementById('imageContainer');
 
             function showLoader() {
                 loader.style.display = 'block';
@@ -287,12 +370,29 @@
                 loader.style.display = 'none';
                 imageElement.classList.add('visible');
             }
+            
+            function showCompletionScreen() {
+                imageContainer.style.display = 'none';
+                thankYouSlide.style.display = 'flex';
+                pageIndicator.style.display = 'none';
+                prevButton.style.display = 'none';
+                nextButton.style.display = 'none';
+                completeButton.style.display = 'none';
+                startOverButton.style.display = 'flex';
+            }
+
+            function startOver() {
+                currentPageIndex = 0;
+                imageContainer.style.display = 'flex';
+                thankYouSlide.style.display = 'none';
+                pageIndicator.style.display = 'block';
+                updatePage();
+            }
 
             function updatePage() {
                 showLoader();
                 const pageUrl = storyPages[currentPageIndex];
                 
-                // Preload image
                 const tempImage = new Image();
                 tempImage.src = pageUrl;
                 tempImage.onload = () => {
@@ -306,11 +406,20 @@
 
                 pageIndicator.textContent = `${currentPageIndex + 1} / ${storyPages.length}`;
                 
-                prevButton.classList.toggle('disabled', currentPageIndex === 0);
+                // Handle button visibility
+                prevButton.style.display = 'flex';
                 prevButton.disabled = currentPageIndex === 0;
-                
-                nextButton.classList.toggle('disabled', currentPageIndex === storyPages.length - 1);
-                nextButton.disabled = currentPageIndex === storyPages.length - 1;
+                prevButton.classList.toggle('disabled', currentPageIndex === 0);
+
+                if (currentPageIndex === storyPages.length - 1) {
+                    nextButton.style.display = 'none';
+                    completeButton.style.display = 'flex';
+                    startOverButton.style.display = 'flex';
+                } else {
+                    nextButton.style.display = 'flex';
+                    completeButton.style.display = 'none';
+                    startOverButton.style.display = 'none';
+                }
             }
 
             prevButton.addEventListener('click', () => {
@@ -326,6 +435,9 @@
                     updatePage();
                 }
             });
+            
+            completeButton.addEventListener('click', showCompletionScreen);
+            startOverButton.addEventListener('click', startOver);
 
             // Initial page load
             updatePage();
