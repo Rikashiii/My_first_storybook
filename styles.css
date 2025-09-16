@@ -1,20 +1,19 @@
-/* General Body Styles - Sakura Dream Theme */
+/* General Body Styles - Modern Slate Theme */
 :root {
-    --bg-start: #fdf2f8; /* Soft Pink */
-    --bg-end: #fefce8;   /* Soft Yellow */
-    --card-bg: #ffffff;
-    --border-color: #f3f4f6;
-    --primary-text: #1f2937;
-    --secondary-text: #6b7280;
-    --accent-color: #ec4899; /* Pink-500 */
-    --accent-glow: rgba(236, 72, 153, 0.15);
-    --button-bg-start: #ec4899; /* Pink-500 */
-    --button-bg-end: #d946ef;   /* Fuchsia-500 */
+    --bg-color: #111827; /* Gray-900 */
+    --card-bg: #1f2937;  /* Gray-800 */
+    --border-color: #374151; /* Gray-700 */
+    --primary-text: #f9fafb; /* Gray-50 */
+    --secondary-text: #9ca3af; /* Gray-400 */
+    --accent-color: #38bdf8; /* Sky-400 */
+    --accent-glow: rgba(56, 189, 248, 0.1);
+    --button-bg-start: #38bdf8; /* Sky-400 */
+    --button-bg-end: #3b82f6;   /* Blue-500 */
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    background-color: var(--bg-color);
     color: var(--primary-text);
     margin: 0;
     display: flex;
@@ -32,7 +31,7 @@ body {
     background-color: var(--card-bg);
     border-radius: 24px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
     padding: 30px 40px;
@@ -61,7 +60,7 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 2.8rem;
     margin: 0;
-    color: #be185d; /* Deeper Pink */
+    color: var(--accent-color);
     font-weight: 700;
 }
 
@@ -96,7 +95,7 @@ body {
     max-height: 60vh;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
@@ -145,12 +144,12 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 8px 15px var(--accent-glow);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
 .nav-button:hover:not(:disabled) {
     transform: translateY(-4px);
-    box-shadow: 0 12px 20px rgba(236, 72, 153, 0.3);
+    box-shadow: 0 12px 20px rgba(56, 189, 248, 0.25);
 }
 
 .page-indicator {
@@ -161,12 +160,11 @@ body {
 }
 
 .nav-button.disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-    background: #e5e7eb; /* Gray-200 */
+    background: var(--border-color);
     box-shadow: none;
-    color: var(--secondary-text);
 }
 
 /* Footer */
