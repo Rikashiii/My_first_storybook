@@ -1,4 +1,7 @@
-# My_first_storybook
+# My First Storybook
+
+# How to View
+Open the Rikashi's New Apartment.html
 
 # Created using GEMINI Pro
 
