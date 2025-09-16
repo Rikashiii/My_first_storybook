@@ -2,6 +2,7 @@
 
 # How to View
 Link to the site is in the [description](https://github.com/Rikashiii/My_first_storybook/tree/main) of the repository.
+
 or simply click [here](https://rikashiii.github.io/My_first_storybook/)
 
 # Story
