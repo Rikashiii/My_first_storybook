@@ -1,8 +1,9 @@
 /* General Body Styles */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #121212; /* Dark background */
-    color: #e0e0e0; /* Light text */
+    /* A soft, colorful gradient background */
+    background: linear-gradient(135deg, #f5e6ff 0%, #e6f7ff 100%);
+    color: #333; /* Darker text for readability on light background */
     margin: 0;
     display: flex;
     justify-content: center;
@@ -34,13 +35,13 @@ header {
 header h1 {
     font-size: 2.5rem;
     margin: 0;
-    color: #ffffff;
+    color: #2c3e50; /* A deep, rich blue for the title */
     font-weight: 700;
 }
 
 header p {
     font-size: 1.1rem;
-    color: #a0a0a0;
+    color: #555;
     margin-top: 5px;
 }
 
@@ -68,8 +69,9 @@ header p {
     max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    background-color: #202020;
+    /* A softer shadow on a white background for the image to pop */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
 /* Navigation Controls */
@@ -84,35 +86,36 @@ header p {
 }
 
 #prev-button, #next-button {
-    background-color: #333;
+    background-color: #8e44ad; /* A vibrant purple */
     color: #fff;
-    border: 1px solid #555;
-    padding: 10px 20px;
+    border: none;
+    padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 50px; /* Rounded buttons for a softer look */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(142, 68, 173, 0.3);
 }
 
 #prev-button:hover, #next-button:hover {
-    background-color: #4CAF50; /* A highlight color */
-    border-color: #4CAF50;
-    transform: translateY(-2px);
+    background-color: #9b59b6; /* A slightly lighter purple on hover */
+    transform: translateY(-3px) scale(1.05); /* Add a subtle lift and scale effect */
 }
 
 #page-indicator {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #ccc;
+    color: #444;
     user-select: none; /* Prevent text selection */
 }
 
 /* Disabled state for buttons */
 .disabled {
-    opacity: 0.4;
+    opacity: 0.6;
     cursor: not-allowed;
-    background-color: #252525;
-    border-color: #444;
+    background-color: #c8b6d1; /* Muted purple for disabled state */
+    box-shadow: none;
     transform: none;
 }
+
