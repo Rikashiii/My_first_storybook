@@ -1,19 +1,20 @@
-/* General Body Styles - Modern Slate Theme */
+/* General Body Styles - Cosmic Dream Theme */
 :root {
-    --bg-color: #111827; /* Gray-900 */
-    --card-bg: #1f2937;  /* Gray-800 */
-    --border-color: #374151; /* Gray-700 */
-    --primary-text: #f9fafb; /* Gray-50 */
-    --secondary-text: #9ca3af; /* Gray-400 */
-    --accent-color: #38bdf8; /* Sky-400 */
-    --accent-glow: rgba(56, 189, 248, 0.1);
-    --button-bg-start: #38bdf8; /* Sky-400 */
-    --button-bg-end: #3b82f6;   /* Blue-500 */
+    --bg-start: #0f0c29;
+    --bg-mid: #302b63;
+    --bg-end: #24243e;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --primary-text: #ffffff;
+    --secondary-text: #a7a2d3;
+    --accent-color: #f7b733;
+    --button-bg-start: #fc4a1a;
+    --button-bg-end: #f7b733;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
     color: var(--primary-text);
     margin: 0;
     display: flex;
@@ -22,30 +23,48 @@ body {
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    overflow: hidden; /* Hide overflow for the stars */
+}
+
+/* Animated Starry Background */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 5s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes twinkle {
+    from { background-position: 0 0; }
+    to { background-position: -200px 0; }
 }
 
 /* Main Storybook Container Card */
 .storybook-container {
     width: 100%;
-    max-width: 1000px;
-    background-color: var(--card-bg);
-    border-radius: 24px;
+    max-width: 900px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     padding: 30px 40px;
     box-sizing: border-box;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.8s 0.2s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    z-index: 1; /* Ensure container is above the background */
 }
 
 /* Header Styles */
@@ -57,11 +76,12 @@ body {
 }
 
 .storybook-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
     margin: 0;
-    color: var(--accent-color);
+    color: var(--primary-text);
     font-weight: 700;
+    text-shadow: 0 0 10px var(--accent-color);
 }
 
 .storybook-header p {
@@ -73,31 +93,26 @@ body {
 /* Storybook Viewer Main Content */
 .storybook-main {
     width: 100%;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .image-container {
     width: 100%;
-    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
     position: relative;
-    min-height: 50vh;
+    min-height: 55vh;
 }
 
 .storybook-image {
     max-width: 100%;
-    max-height: 60vh;
+    max-height: 55vh;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
 }
 
 .storybook-image.visible {
@@ -125,7 +140,8 @@ body {
 /* Navigation Controls */
 .navigation-controls {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -135,21 +151,21 @@ body {
     background: linear-gradient(135deg, var(--button-bg-start), var(--button-bg-end));
     color: #ffffff;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .nav-button:hover:not(:disabled) {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px rgba(56, 189, 248, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(247, 183, 51, 0.3);
 }
 
 .page-indicator {
@@ -182,9 +198,6 @@ body {
     body { padding: 10px; }
     .storybook-container { padding: 20px; }
     .storybook-header h1 { font-size: 2rem; }
-    .navigation-controls { flex-direction: column; gap: 15px; }
-    .page-indicator { order: -1; }
-    .nav-button span { display: none; } /* Show only icons on small screens */
-    .nav-button { padding: 12px; }
+    .storybook-image { max-height: 45vh; }
+    .image-container { min-height: 50vh; }
 }
-
