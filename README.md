@@ -2,7 +2,7 @@
 
 ### How to View
 
-Click on the **"Final Release"** in Releases section.
+Click on the **"[Final Release](https://github.com/theharshchandrakar/My_first_storybook/releases/tag/Final-Release)"** in Releases section.
 
 
 ### Story
